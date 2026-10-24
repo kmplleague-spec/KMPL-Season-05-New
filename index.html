@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101010">
+<title>KMPL Season 05 | Official League</title>
+
+<style>
+*{box-sizing:border-box}
+:root{
+  --bg:#101010;
+  --panel:#1b1b1b;
+  --gold:#f5c542;
+  --text:#fff;
+  --muted:#b5b5b5;
+  --border:#333;
+  --green:#28c76f;
+}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+header{
+  text-align:center;
+  padding:30px 15px 25px;
+  background:linear-gradient(135deg,#292929,#101010);
+  border-bottom:2px solid var(--gold);
+}
+.brand{
+  color:var(--gold);
+  font-size:13px;
+  font-weight:bold;
+  letter-spacing:3px;
+}
+h1{
+  margin:12px 0 5px;
+  font-size:clamp(32px,7vw,48px);
+  font-weight:900;
+}
+.season{color:var(--gold);font-weight:bold}
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:18px;
+  padding:8px 13px;
+  background:#202020;
+  border:1px solid #3c3c3c;
+  border-radius:30px;
+  color:var(--muted);
+  font-size:12px;
+}
+.dot{
+  width:8px;height:8px;
+  background:var(--gold);
+  border-radius:50%;
+}
+main{
+  width:min(1100px,100%);
+  margin:auto;
+  padding:22px 15px 40px;
+}
+.welcome{margin-bottom:22px}
+.welcome h2{margin:0 0 7px;font-size:23px}
+.welcome p{color:var(--muted);line-height:1.7;margin:0}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:28px;
+}
+.stat{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:17px 7px;
+  text-align:center;
+}
+.stat strong{
+  display:block;
+  color:var(--gold);
+  font-size:clamp(22px,5vw,32px);
+  margin-bottom:7px;
+}
+.stat span{color:var(--muted);font-size:12px}
+.section-title{font-size:20px;margin:0 0 15px}
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.menu-card{
+  display:block;
+  min-height:120px;
+  padding:16px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:13px;
+  color:var(--text);
+  text-decoration:none;
+  transition:.2s;
+}
+.menu-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.menu-icon{font-size:27px;margin-bottom:12px}
+.menu-card h3{margin:0 0 7px;font-size:16px}
+.menu-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.panel{
+  margin-top:25px;
+  padding:18px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:13px;
+}
+.panel h2{margin:0 0 12px;font-size:19px}
+.message{color:var(--muted);line-height:1.8;font-size:14px;overflow-wrap:anywhere}
+.refresh{
+  margin-top:14px;
+  padding:11px 17px;
+  background:var(--gold);
+  color:#111;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.data-list{display:grid;gap:10px;margin-top:12px}
+.data-card{
+  background:#242424;
+  padding:13px;
+  border:1px solid #393939;
+  border-radius:9px;
+}
+.data-card strong{color:var(--gold)}
+.data-card small{display:block;color:var(--muted);margin-top:6px;line-height:1.6}
+footer{
+  padding:25px 15px;
+  text-align:center;
+  border-top:1px solid var(--border);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+footer strong{color:var(--gold)}
+@media(min-width:700px){
+  .menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:360px){
+  .stats{gap:5px}
+  .stat{padding:14px 4px}
+  .menu{gap:8px}
+  .menu-card{padding:12px}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="brand">GOLDEN WINGS PRESENTS</div>
+  <h1>KMPL</h1>
+  <div class="season">SEASON 05 · 2026</div>
+  <div class="status">
+    <span class="dot" id="statusDot"></span>
+    <span id="apiStatus">API പരിശോധിക്കുന്നു...</span>
+  </div>
+</header>
+
+<main>
+  <section class="welcome">
+    <h2>KMPL ഔദ്യോഗിക ഡാഷ്‌ബോർഡ്</h2>
+    <p>ടീമുകൾ, കളിക്കാർ, ലേലം, മത്സരക്രമം, ലൈവ് സ്കോർ,
+    പോയിന്റ് പട്ടിക, മത്സരഫലങ്ങൾ എന്നിവ ഒരിടത്ത്.</p>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <strong id="teamCount">16</strong>
+      <span>ടീമുകൾ</span>
+    </div>
+    <div class="stat">
+      <strong id="playerCount">0</strong>
+      <span>കളിക്കാർ</span>
+    </div>
+    <div class="stat">
+      <strong>05</strong>
+      <span>സീസൺ</span>
+    </div>
+  </section>
+
+  <h2 class="section-title">ലീഗ് വിഭാഗങ്ങൾ</h2>
+
+  <section class="menu">
+    <a class="menu-card" href="#teams" onclick="showSection('teams');return false">
+      <div class="menu-icon">🏏</div>
+      <h3>ടീമുകൾ</h3>
+      <p>16 ടീമുകളുടെയും വിവരങ്ങൾ</p>
+    </a>
+
+    <a class="menu-card" href="#players" onclick="showSection('players');return false">
+      <div class="menu-icon">👥</div>
+      <h3>കളിക്കാർ</h3>
+      <p>കളിക്കാരുടെ പട്ടിക</p>
+    </a>
+
+    <a class="menu-card" href="#auction" onclick="showSection('auction');return false">
+      <div class="menu-icon">🔨</div>
+      <h3>പ്ലെയർ ലേലം</h3>
+      <p>ലേല വിവരങ്ങളും ടീമുകളുടെ ബജറ്റും</p>
+    </a>
+
+    <a class="menu-card" href="#fixtures" onclick="showSection('fixtures');return false">
+      <div class="menu-icon">📅</div>
+      <h3>മത്സരക്രമം</h3>
+      <p>വരാനിരിക്കുന്ന മത്സരങ്ങൾ</p>
+    </a>
+
+    <a class="menu-card" href="#live" onclick="showSection('live');return false">
+      <div class="menu-icon">🔴</div>
+      <h3>ലൈവ് സ്കോർ</h3>
+      <p>തത്സമയ മത്സര വിവരങ്ങൾ</p>
+    </a>
+
+    <a class="menu-card" href="#points" onclick="showSection('points');return false">
+      <div class="menu-icon">📊</div>
+      <h3>പോയിന്റ് പട്ടിക</h3>
+      <p>ടീമുകളുടെ നിലവിലെ സ്ഥാനം</p>
+    </a>
+
+    <a class="menu-card" href="#results" onclick="showSection('results');return false">
+      <div class="menu-icon">🏆</div>
+      <h3>മത്സരഫലങ്ങൾ</h3>
+      <p>പൂർത്തിയായ മത്സരങ്ങളുടെ ഫലം</p>
+    </a>
+  </section>
+
+  <section class="panel" id="contentPanel">
+    <h2 id="panelTitle">സിസ്റ്റം നില</h2>
+    <div class="message" id="panelMessage">
+      പുതിയ KMPL സിസ്റ്റത്തിൽ നിന്ന് വിവരങ്ങൾ ലഭ്യമാക്കുന്നു...
+    </div>
+    <div class="data-list" id="dataList"></div>
+    <button class="refresh" onclick="refreshData()">വിവരങ്ങൾ പുതുക്കുക</button>
+  </section>
+</main>
+
+<footer>
+  <strong>GOLDEN WINGS PRESENTS KMPL SEASON 05</strong>
+  <br>ഔദ്യോഗിക ലീഗ് മാനേജ്മെന്റ് സിസ്റ്റം · 2026
+</footer>
+
+<script>
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyjcL9rIlVOA0VLrdngXzMuxQvFtLuS2zpywtMS7SjW7fZKKj1XfCA2ITSSsVAL4uJK/exec";
+
+const sectionConfig = {
+  teams: {
+    title:"ടീമുകൾ",
+    action:"teams",
+    empty:"ടീം വിവരങ്ങൾ ലഭ്യമല്ല."
+  },
+  players: {
+    title:"കളിക്കാർ",
+    action:"players",
+    empty:"കളിക്കാരുടെ വിവരങ്ങൾ ലഭ്യമല്ല."
+  },
+  auction: {
+    title:"പ്ലെയർ ലേലം",
+    action:"auction",
+    empty:"ലേല വിവരങ്ങൾ ലഭ്യമല്ല."
+  },
+  fixtures: {
+    title:"മത്സരക്രമം",
+    action:"fixtures",
+    empty:"മത്സരക്രമം ഇതുവരെ ചേർത്തിട്ടില്ല."
+  },
+  live: {
+    title:"ലൈവ് സ്കോർ",
+    action:"liveState",
+    empty:"ലൈവ് സ്കോർ വിവരങ്ങൾ ലഭ്യമല്ല."
+  },
+  points: {
+    title:"പോയിന്റ് പട്ടിക",
+    action:"pointsTable",
+    empty:"പോയിന്റ് പട്ടിക ഇതുവരെ തയ്യാറാക്കിയിട്ടില്ല."
+  },
+  results: {
+    title:"മത്സരഫലങ്ങൾ",
+    action:"results",
+    empty:"മത്സരഫലങ്ങൾ ഇതുവരെ ചേർത്തിട്ടില്ല."
+  }
+};
+
+let currentSection = "";
+let cache = {};
+
+async function apiRequest(action){
+  const response = await fetch(
+    API_URL + "?action=" + encodeURIComponent(action)
+  );
+
+  if(!response.ok){
+    throw new Error("API പിശക്: " + response.status);
+  }
+
+  return await response.json();
+}
+
+function extractRows(data){
+  if(Array.isArray(data)) return data;
+  if(!data || typeof data !== "object") return [];
+
+  const possibleKeys = [
+    "data","teams","players","auction","fixtures",
+    "results","pointsTable","rows","records"
+  ];
+
+  for(const key of possibleKeys){
+    if(Array.isArray(data[key])) return data[key];
+  }
+
+  if(data.success === false){
+    throw new Error(data.message || "വിവരങ്ങൾ ലഭ്യമല്ല");
+  }
+
+  return [];
+}
+
+function safeText(value){
+  if(value === null || value === undefined || value === ""){
+    return "—";
+  }
+  if(typeof value === "object"){
+    return JSON.stringify(value);
+  }
+  return String(value);
+}
+
+function findName(row){
+  return row.name || row.teamName || row.team ||
+         row.playerName || row.player || row.title ||
+         row.matchName || row.registrationNumber || "വിവരം";
+}
+
+function renderRows(rows){
+  const list = document.getElementById("dataList");
+  list.replaceChildren();
+
+  if(!rows || rows.length === 0){
+    return false;
+  }
+
+  rows.forEach((row,index)=>{
+    const card = document.createElement("div");
+    card.className = "data-card";
+
+    const title = document.createElement("strong");
+    title.textContent = (index+1) + ". " +
+      (typeof row === "object" ? findName(row) : safeText(row));
+    card.appendChild(title);
+
+    if(typeof row === "object" && row !== null){
+      const details = document.createElement("small");
+
+      const entries = Object.entries(row)
+        .filter(([key,value]) =>
+          value !== null &&
+          value !== undefined &&
+          value !== "" &&
+          !["name","teamName","team","playerName","player","title"].includes(key)
+        )
+        .slice(0,8);
+
+      details.textContent = entries.length
+        ? entries.map(([key,value]) =>
+            key + ": " + safeText(value)
+          ).join(" · ")
+        : "കൂടുതൽ വിവരങ്ങളില്ല";
+
+      card.appendChild(details);
+    }
+
+    list.appendChild(card);
+  });
+
+  return true;
+}
+
+async function refreshData(){
+  const status = document.getElementById("apiStatus");
+  const dot = document.getElementById("statusDot");
+
+  status.textContent = "ബന്ധിപ്പിക്കുന്നു...";
+  dot.style.background = "#f5c542";
+
+  try{
+    const ping = await apiRequest("ping");
+
+    if(!ping || ping.success !== true){
+      throw new Error(ping && ping.message
+        ? ping.message
+        : "API ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല");
+    }
+
+    status.textContent = "API ബന്ധിപ്പിച്ചു";
+    dot.style.background = "#28c76f";
+
+    try{
+      const teamData = await apiRequest("teams");
+      const teams = extractRows(teamData);
+      cache.teams = teams;
+
+      if(teams.length){
+        document.getElementById("teamCount").textContent =
+          teams.length;
+      }
+    }catch(error){
+      console.warn("ടീം വിവരങ്ങൾ:",error.message);
+    }
+
+    try{
+      const playerData = await apiRequest("players");
+      const players = extractRows(playerData);
+      cache.players = players;
+
+      document.getElementById("playerCount").textContent =
+        players.length;
+    }catch(error){
+      console.warn("കളിക്കാരുടെ വിവരങ്ങൾ:",error.message);
+    }
+
+    document.getElementById("panelTitle").textContent =
+      "കണക്ഷൻ വിജയിച്ചു";
+
+    document.getElementById("panelMessage").textContent =
+      "KMPL Season 05 API പ്രവർത്തിക്കുന്നു. ആവശ്യമായ വിഭാഗം തിരഞ്ഞെടുത്ത് വിവരങ്ങൾ കാണുക.";
+
+    if(currentSection){
+      await showSection(currentSection);
+    }
+  }catch(error){
+    status.textContent = "കണക്ഷൻ പിശക്";
+    dot.style.background = "#ff4d4d";
+
+    document.getElementById("panelTitle").textContent =
+      "API കണക്ഷൻ പിശക്";
+
+    document.getElementById("panelMessage").textContent =
+      error.message + ". Apps Script Web App URL, deployment access എന്നിവ പരിശോധിക്കുക.";
+
+    document.getElementById("dataList").replaceChildren();
+  }
+}
+
+async function showSection(section){
+  const config = sectionConfig[section];
+  if(!config) return;
+
+  currentSection = section;
+
+  document.getElementById("panelTitle").textContent =
+    config.title;
+
+  document.getElementById("panelMessage").textContent =
+    "വിവരങ്ങൾ ലഭ്യമാക്കുന്നു...";
+
+  document.getElementById("dataList").replaceChildren();
+
+  try{
+    let data;
+
+    if(cache[section] !== undefined){
+      data = cache[section];
+    }else{
+      const response = await apiRequest(config.action);
+      data = extractRows(response);
+      cache[section] = data;
+    }
+
+    if(section === "live" &&
+       data &&
+       !Array.isArray(data) &&
+       typeof data === "object"){
+      document.getElementById("panelMessage").textContent =
+        JSON.stringify(data,null,2);
+      return;
+    }
+
+    if(renderRows(data)){
+      document.getElementById("panelMessage").textContent =
+        "ലഭിച്ച വിവരങ്ങൾ: " + data.length;
+    }else{
+      document.getElementById("panelMessage").textContent =
+        config.empty;
+    }
+  }catch(error){
+    document.getElementById("panelMessage").textContent =
+      "വിവരങ്ങൾ ലഭ്യമാക്കാൻ കഴിഞ്ഞില്ല: " + error.message;
+  }
+
+  document.getElementById("contentPanel").scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+refreshData();
+</script>
+</body>
+</html>
