@@ -8,6 +8,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 :root{
   --bg:#101010;
   --panel:#1b1b1b;
@@ -16,31 +17,41 @@
   --muted:#b5b5b5;
   --border:#333;
   --green:#28c76f;
+  --red:#ff4d4d;
 }
+
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
   background:var(--bg);
   color:var(--text);
 }
+
 header{
   text-align:center;
   padding:30px 15px 25px;
   background:linear-gradient(135deg,#292929,#101010);
   border-bottom:2px solid var(--gold);
 }
+
 .brand{
   color:var(--gold);
   font-size:13px;
   font-weight:bold;
   letter-spacing:3px;
 }
+
 h1{
   margin:12px 0 5px;
   font-size:clamp(32px,7vw,48px);
   font-weight:900;
 }
-.season{color:var(--gold);font-weight:bold}
+
+.season{
+  color:var(--gold);
+  font-weight:bold;
+}
+
 .status{
   display:inline-flex;
   align-items:center;
@@ -53,25 +64,42 @@ h1{
   color:var(--muted);
   font-size:12px;
 }
+
 .dot{
-  width:8px;height:8px;
+  width:8px;
+  height:8px;
   background:var(--gold);
   border-radius:50%;
 }
+
 main{
   width:min(1100px,100%);
   margin:auto;
   padding:22px 15px 40px;
 }
-.welcome{margin-bottom:22px}
-.welcome h2{margin:0 0 7px;font-size:23px}
-.welcome p{color:var(--muted);line-height:1.7;margin:0}
+
+.welcome{
+  margin-bottom:22px;
+}
+
+.welcome h2{
+  margin:0 0 7px;
+  font-size:23px;
+}
+
+.welcome p{
+  color:var(--muted);
+  line-height:1.7;
+  margin:0;
+}
+
 .stats{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:10px;
   margin-bottom:28px;
 }
+
 .stat{
   background:var(--panel);
   border:1px solid var(--border);
@@ -79,19 +107,30 @@ main{
   padding:17px 7px;
   text-align:center;
 }
+
 .stat strong{
   display:block;
   color:var(--gold);
   font-size:clamp(22px,5vw,32px);
   margin-bottom:7px;
 }
-.stat span{color:var(--muted);font-size:12px}
-.section-title{font-size:20px;margin:0 0 15px}
+
+.stat span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.section-title{
+  font-size:20px;
+  margin:0 0 15px;
+}
+
 .menu{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:12px;
 }
+
 .menu-card{
   display:block;
   min-height:120px;
@@ -103,19 +142,51 @@ main{
   text-decoration:none;
   transition:.2s;
 }
-.menu-card:hover{border-color:var(--gold);transform:translateY(-2px)}
-.menu-icon{font-size:27px;margin-bottom:12px}
-.menu-card h3{margin:0 0 7px;font-size:16px}
-.menu-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+
+.menu-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-2px);
+}
+
+.menu-icon{
+  font-size:27px;
+  margin-bottom:12px;
+}
+
+.menu-card h3{
+  margin:0 0 7px;
+  font-size:16px;
+}
+
+.menu-card p{
+  margin:0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+
 .panel{
   margin-top:25px;
   padding:18px;
   background:var(--panel);
   border:1px solid var(--border);
   border-radius:13px;
+  scroll-margin-top:15px;
 }
-.panel h2{margin:0 0 12px;font-size:19px}
-.message{color:var(--muted);line-height:1.8;font-size:14px;overflow-wrap:anywhere}
+
+.panel h2{
+  margin:0 0 12px;
+  font-size:19px;
+}
+
+.message{
+  color:var(--muted);
+  line-height:1.8;
+  font-size:14px;
+  overflow-wrap:anywhere;
+  white-space:pre-wrap;
+}
+
 .refresh{
   margin-top:14px;
   padding:11px 17px;
@@ -126,15 +197,38 @@ main{
   font-weight:bold;
   cursor:pointer;
 }
-.data-list{display:grid;gap:10px;margin-top:12px}
+
+.refresh:disabled{
+  opacity:.6;
+  cursor:wait;
+}
+
+.data-list{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+
 .data-card{
   background:#242424;
   padding:13px;
   border:1px solid #393939;
   border-radius:9px;
+  overflow-wrap:anywhere;
 }
-.data-card strong{color:var(--gold)}
-.data-card small{display:block;color:var(--muted);margin-top:6px;line-height:1.6}
+
+.data-card strong{
+  color:var(--gold);
+}
+
+.data-card small{
+  display:block;
+  color:var(--muted);
+  margin-top:6px;
+  line-height:1.8;
+  overflow-wrap:anywhere;
+}
+
 footer{
   padding:25px 15px;
   text-align:center;
@@ -143,10 +237,17 @@ footer{
   font-size:12px;
   line-height:1.8;
 }
-footer strong{color:var(--gold)}
-@media(min-width:700px){
-  .menu{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+footer strong{
+  color:var(--gold);
 }
+
+@media(min-width:700px){
+  .menu{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+
 @media(max-width:360px){
   .stats{gap:5px}
   .stat{padding:14px 4px}
@@ -157,10 +258,12 @@ footer strong{color:var(--gold)}
 </head>
 
 <body>
+
 <header>
   <div class="brand">GOLDEN WINGS PRESENTS</div>
   <h1>KMPL</h1>
   <div class="season">SEASON 05 · 2026</div>
+
   <div class="status">
     <span class="dot" id="statusDot"></span>
     <span id="apiStatus">API പരിശോധിക്കുന്നു...</span>
@@ -168,10 +271,13 @@ footer strong{color:var(--gold)}
 </header>
 
 <main>
+
   <section class="welcome">
     <h2>KMPL ഔദ്യോഗിക ഡാഷ്‌ബോർഡ്</h2>
-    <p>ടീമുകൾ, കളിക്കാർ, ലേലം, മത്സരക്രമം, ലൈവ് സ്കോർ,
-    പോയിന്റ് പട്ടിക, മത്സരഫലങ്ങൾ എന്നിവ ഒരിടത്ത്.</p>
+    <p>
+      ടീമുകൾ, കളിക്കാർ, ലേലം, മത്സരക്രമം, ലൈവ് സ്കോർ,
+      പോയിന്റ് പട്ടിക, മത്സരഫലങ്ങൾ എന്നിവ ഒരിടത്ത്.
+    </p>
   </section>
 
   <section class="stats">
@@ -179,10 +285,12 @@ footer strong{color:var(--gold)}
       <strong id="teamCount">16</strong>
       <span>ടീമുകൾ</span>
     </div>
+
     <div class="stat">
       <strong id="playerCount">0</strong>
       <span>കളിക്കാർ</span>
     </div>
+
     <div class="stat">
       <strong>05</strong>
       <span>സീസൺ</span>
@@ -192,190 +300,354 @@ footer strong{color:var(--gold)}
   <h2 class="section-title">ലീഗ് വിഭാഗങ്ങൾ</h2>
 
   <section class="menu">
-    <a class="menu-card" href="#teams" onclick="showSection('teams');return false">
+
+    <a class="menu-card" href="#teams"
+       onclick="showSection('teams');return false">
       <div class="menu-icon">🏏</div>
       <h3>ടീമുകൾ</h3>
-      <p>16 ടീമുകളുടെയും വിവരങ്ങൾ</p>
+      <p>ടീമുകളുടെ പേരും ബജറ്റ് വിവരങ്ങളും</p>
     </a>
 
-    <a class="menu-card" href="#players" onclick="showSection('players');return false">
+    <a class="menu-card" href="#players"
+       onclick="showSection('players');return false">
       <div class="menu-icon">👥</div>
       <h3>കളിക്കാർ</h3>
-      <p>കളിക്കാരുടെ പട്ടിക</p>
+      <p>രജിസ്റ്റർ ചെയ്ത കളിക്കാരുടെ പട്ടിക</p>
     </a>
 
-    <a class="menu-card" href="#auction" onclick="showSection('auction');return false">
+    <a class="menu-card" href="#auction"
+       onclick="showSection('auction');return false">
       <div class="menu-icon">🔨</div>
       <h3>പ്ലെയർ ലേലം</h3>
-      <p>ലേല വിവരങ്ങളും ടീമുകളുടെ ബജറ്റും</p>
+      <p>ലേല വിവരങ്ങളും വാങ്ങിയ കളിക്കാരും</p>
     </a>
 
-    <a class="menu-card" href="#fixtures" onclick="showSection('fixtures');return false">
+    <a class="menu-card" href="#fixtures"
+       onclick="showSection('fixtures');return false">
       <div class="menu-icon">📅</div>
       <h3>മത്സരക്രമം</h3>
       <p>വരാനിരിക്കുന്ന മത്സരങ്ങൾ</p>
     </a>
 
-    <a class="menu-card" href="#live" onclick="showSection('live');return false">
+    <a class="menu-card" href="#live"
+       onclick="showSection('live');return false">
       <div class="menu-icon">🔴</div>
       <h3>ലൈവ് സ്കോർ</h3>
-      <p>തത്സമയ മത്സര വിവരങ്ങൾ</p>
+      <p>നിലവിലെ ലൈവ് സ്റ്റേറ്റ് വിവരങ്ങൾ</p>
     </a>
 
-    <a class="menu-card" href="#points" onclick="showSection('points');return false">
+    <a class="menu-card" href="#points"
+       onclick="showSection('points');return false">
       <div class="menu-icon">📊</div>
       <h3>പോയിന്റ് പട്ടിക</h3>
       <p>ടീമുകളുടെ നിലവിലെ സ്ഥാനം</p>
     </a>
 
-    <a class="menu-card" href="#results" onclick="showSection('results');return false">
+    <a class="menu-card" href="#results"
+       onclick="showSection('results');return false">
       <div class="menu-icon">🏆</div>
       <h3>മത്സരഫലങ്ങൾ</h3>
-      <p>പൂർത്തിയായ മത്സരങ്ങളുടെ ഫലം</p>
+      <p>പൂർത്തിയായ മത്സരങ്ങളുടെ ഫലങ്ങൾ</p>
     </a>
+
   </section>
 
   <section class="panel" id="contentPanel">
     <h2 id="panelTitle">സിസ്റ്റം നില</h2>
+
     <div class="message" id="panelMessage">
       പുതിയ KMPL സിസ്റ്റത്തിൽ നിന്ന് വിവരങ്ങൾ ലഭ്യമാക്കുന്നു...
     </div>
+
     <div class="data-list" id="dataList"></div>
-    <button class="refresh" onclick="refreshData()">വിവരങ്ങൾ പുതുക്കുക</button>
+
+    <button class="refresh" id="refreshButton"
+            onclick="refreshData()">
+      വിവരങ്ങൾ പുതുക്കുക
+    </button>
   </section>
+
 </main>
 
 <footer>
   <strong>GOLDEN WINGS PRESENTS KMPL SEASON 05</strong>
-  <br>ഔദ്യോഗിക ലീഗ് മാനേജ്മെന്റ് സിസ്റ്റം · 2026
+  <br>
+  ഔദ്യോഗിക ലീഗ് മാനേജ്മെന്റ് സിസ്റ്റം · 2026
 </footer>
 
 <script>
+"use strict";
+
+/* =========================================
+   KMPL API CONFIGURATION
+   ========================================= */
+
 const API_URL =
-"https://script.google.com/macros/s/AKfycbyjcL9rIlVOA0VLrdngXzMuxQvFtLuS2zpywtMS7SjW7fZKKj1XfCA2ITSSsVAL4uJK/exec";
+  "https://script.google.com/macros/s/AKfycbyjcL9rIlVOA0VLrdngXzMuxQvFtLuS2zpywtMS7SjW7fZKKj1XfCA2ITSSsVAL4uJK/exec";
 
 const sectionConfig = {
   teams: {
-    title:"ടീമുകൾ",
-    action:"teams",
-    empty:"ടീം വിവരങ്ങൾ ലഭ്യമല്ല."
+    title: "ടീമുകൾ",
+    action: "teams",
+    empty: "ടീം വിവരങ്ങൾ ലഭ്യമല്ല."
   },
+
   players: {
-    title:"കളിക്കാർ",
-    action:"players",
-    empty:"കളിക്കാരുടെ വിവരങ്ങൾ ലഭ്യമല്ല."
+    title: "കളിക്കാർ",
+    action: "players",
+    empty: "കളിക്കാരുടെ വിവരങ്ങൾ ലഭ്യമല്ല."
   },
+
   auction: {
-    title:"പ്ലെയർ ലേലം",
-    action:"auction",
-    empty:"ലേല വിവരങ്ങൾ ലഭ്യമല്ല."
+    title: "പ്ലെയർ ലേലം",
+    action: "auction",
+    empty: "ലേല വിവരങ്ങൾ ലഭ്യമല്ല."
   },
+
   fixtures: {
-    title:"മത്സരക്രമം",
-    action:"fixtures",
-    empty:"മത്സരക്രമം ഇതുവരെ ചേർത്തിട്ടില്ല."
+    title: "മത്സരക്രമം",
+    action: "fixtures",
+    empty: "മത്സരക്രമം ഇതുവരെ ചേർത്തിട്ടില്ല."
   },
+
   live: {
-    title:"ലൈവ് സ്കോർ",
-    action:"liveState",
-    empty:"ലൈവ് സ്കോർ വിവരങ്ങൾ ലഭ്യമല്ല."
+    title: "ലൈവ് സ്കോർ",
+    action: "liveState",
+    empty: "ലൈവ് സ്കോർ വിവരങ്ങൾ ലഭ്യമല്ല."
   },
+
   points: {
-    title:"പോയിന്റ് പട്ടിക",
-    action:"pointsTable",
-    empty:"പോയിന്റ് പട്ടിക ഇതുവരെ തയ്യാറാക്കിയിട്ടില്ല."
+    title: "പോയിന്റ് പട്ടിക",
+    action: "pointsTable",
+    empty: "പോയിന്റ് പട്ടിക ഇതുവരെ തയ്യാറാക്കിയിട്ടില്ല."
   },
+
   results: {
-    title:"മത്സരഫലങ്ങൾ",
-    action:"results",
-    empty:"മത്സരഫലങ്ങൾ ഇതുവരെ ചേർത്തിട്ടില്ല."
+    title: "മത്സരഫലങ്ങൾ",
+    action: "results",
+    empty: "മത്സരഫലങ്ങൾ ഇതുവരെ ചേർത്തിട്ടില്ല."
   }
 };
 
 let currentSection = "";
-let cache = {};
+let cache = Object.create(null);
+let requestNumber = 0;
 
-async function apiRequest(action){
-  const response = await fetch(
-    API_URL + "?action=" + encodeURIComponent(action)
-  );
 
-  if(!response.ok){
-    throw new Error("API പിശക്: " + response.status);
-  }
+/* =========================================
+   JSONP API REQUEST
+   fetch() ഉപയോഗിക്കാതെ API വായിക്കുന്നു.
+   Apps Script-ൽ JSONP പിന്തുണ ആവശ്യമാണ്.
+   ========================================= */
 
-  return await response.json();
+function apiRequest(action) {
+  return new Promise(function(resolve, reject) {
+    const callbackName =
+      "kmplCallback_" +
+      Date.now() + "_" +
+      Math.random().toString(36).slice(2);
+
+    const script = document.createElement("script");
+
+    let completed = false;
+
+    const timeout = setTimeout(function() {
+      finish();
+
+      reject(new Error(
+        "API പ്രതികരണത്തിനായി സമയം കഴിഞ്ഞു. " +
+        "Apps Script deployment, URL, JSONP പിന്തുണ എന്നിവ പരിശോധിക്കുക."
+      ));
+    }, 15000);
+
+    function finish() {
+      if (completed) return;
+
+      completed = true;
+      clearTimeout(timeout);
+
+      try {
+        delete window[callbackName];
+      } catch (error) {
+        window[callbackName] = undefined;
+      }
+
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    }
+
+    window[callbackName] = function(data) {
+      finish();
+
+      if (!data || typeof data !== "object") {
+        reject(new Error("API പ്രതികരണത്തിന്റെ രൂപം ശരിയല്ല."));
+        return;
+      }
+
+      if (data.success === false) {
+        reject(new Error(data.message || "API പിശക്."));
+        return;
+      }
+
+      resolve(data);
+    };
+
+    script.onerror = function() {
+      finish();
+
+      reject(new Error(
+        "API സ്ക്രിപ്റ്റ് ലോഡ് ചെയ്യാനായില്ല. " +
+        "Web App URL, deployment access എന്നിവ പരിശോധിക്കുക."
+      ));
+    };
+
+    const separator = API_URL.includes("?") ? "&" : "?";
+
+    script.src =
+      API_URL +
+      separator +
+      "action=" + encodeURIComponent(action) +
+      "&callback=" + encodeURIComponent(callbackName) +
+      "&_=" + Date.now();
+
+    document.head.appendChild(script);
+  });
 }
 
-function extractRows(data){
-  if(Array.isArray(data)) return data;
-  if(!data || typeof data !== "object") return [];
 
-  const possibleKeys = [
-    "data","teams","players","auction","fixtures",
-    "results","pointsTable","rows","records"
-  ];
+/* =========================================
+   RESPONSE DATA EXTRACTION
+   ========================================= */
 
-  for(const key of possibleKeys){
-    if(Array.isArray(data[key])) return data[key];
+function extractRows(response) {
+  if (Array.isArray(response)) {
+    return response;
   }
 
-  if(data.success === false){
-    throw new Error(data.message || "വിവരങ്ങൾ ലഭ്യമല്ല");
+  if (!response || typeof response !== "object") {
+    return [];
+  }
+
+  const keys = [
+    "data",
+    "teams",
+    "players",
+    "auction",
+    "fixtures",
+    "results",
+    "pointsTable",
+    "rows",
+    "records"
+  ];
+
+  for (const key of keys) {
+    if (Array.isArray(response[key])) {
+      return response[key];
+    }
   }
 
   return [];
 }
 
-function safeText(value){
-  if(value === null || value === undefined || value === ""){
+
+/* =========================================
+   SAFE TEXT FORMATTING
+   ========================================= */
+
+function safeText(value) {
+  if (value === null ||
+      value === undefined ||
+      value === "") {
     return "—";
   }
-  if(typeof value === "object"){
+
+  if (typeof value === "object") {
     return JSON.stringify(value);
   }
+
   return String(value);
 }
 
-function findName(row){
-  return row.name || row.teamName || row.team ||
-         row.playerName || row.player || row.title ||
-         row.matchName || row.registrationNumber || "വിവരം";
+
+/* =========================================
+   RECORD TITLE
+   Supports current Sheet headers.
+   ========================================= */
+
+function findName(row) {
+  if (!row || typeof row !== "object") {
+    return safeText(row);
+  }
+
+  return row.TeamName ||
+         row.FullName ||
+         row.PlayerName ||
+         row.teamName ||
+         row.name ||
+         row.team ||
+         row.playerName ||
+         row.player ||
+         row.title ||
+         row.MatchID ||
+         row.RegistrationNo ||
+         row.Key ||
+         "വിവരം";
 }
 
-function renderRows(rows){
+
+/* =========================================
+   RENDER RECORDS
+   Uses textContent to avoid HTML injection.
+   ========================================= */
+
+function renderRows(rows) {
   const list = document.getElementById("dataList");
+
   list.replaceChildren();
 
-  if(!rows || rows.length === 0){
+  if (!Array.isArray(rows) || rows.length === 0) {
     return false;
   }
 
-  rows.forEach((row,index)=>{
+  rows.forEach(function(row, index) {
     const card = document.createElement("div");
     card.className = "data-card";
 
     const title = document.createElement("strong");
-    title.textContent = (index+1) + ". " +
-      (typeof row === "object" ? findName(row) : safeText(row));
+
+    title.textContent =
+      (index + 1) + ". " + findName(row);
+
     card.appendChild(title);
 
-    if(typeof row === "object" && row !== null){
+    if (row && typeof row === "object" &&
+        !Array.isArray(row)) {
       const details = document.createElement("small");
 
       const entries = Object.entries(row)
-        .filter(([key,value]) =>
-          value !== null &&
-          value !== undefined &&
-          value !== "" &&
-          !["name","teamName","team","playerName","player","title"].includes(key)
-        )
-        .slice(0,8);
+        .filter(function(entry) {
+          return entry[1] !== null &&
+                 entry[1] !== undefined &&
+                 entry[1] !== "";
+        })
+        .filter(function(entry) {
+          return entry[0] !== "TeamName" &&
+                 entry[0] !== "FullName" &&
+                 entry[0] !== "PlayerName" &&
+                 entry[0] !== "teamName" &&
+                 entry[0] !== "name" &&
+                 entry[0] !== "team" &&
+                 entry[0] !== "playerName" &&
+                 entry[0] !== "player" &&
+                 entry[0] !== "title";
+        })
+        .slice(0, 10);
 
       details.textContent = entries.length
-        ? entries.map(([key,value]) =>
-            key + ": " + safeText(value)
-          ).join(" · ")
+        ? entries.map(function(entry) {
+            return entry[0] + ": " + safeText(entry[1]);
+          }).join(" · ")
         : "കൂടുതൽ വിവരങ്ങളില്ല";
 
       card.appendChild(details);
@@ -387,77 +659,105 @@ function renderRows(rows){
   return true;
 }
 
-async function refreshData(){
-  const status = document.getElementById("apiStatus");
-  const dot = document.getElementById("statusDot");
 
-  status.textContent = "ബന്ധിപ്പിക്കുന്നു...";
-  dot.style.background = "#f5c542";
+/* =========================================
+   API STATUS DISPLAY
+   ========================================= */
 
-  try{
+function setApiStatus(message, color) {
+  document.getElementById("apiStatus").textContent = message;
+
+  document.getElementById("statusDot").style.background = color;
+}
+
+
+/* =========================================
+   REFRESH DASHBOARD
+   ========================================= */
+
+async function refreshData() {
+  const button = document.getElementById("refreshButton");
+
+  button.disabled = true;
+  button.textContent = "വിവരങ്ങൾ പുതുക്കുന്നു...";
+
+  setApiStatus("ബന്ധിപ്പിക്കുന്നു...", "#f5c542");
+
+  try {
     const ping = await apiRequest("ping");
 
-    if(!ping || ping.success !== true){
-      throw new Error(ping && ping.message
-        ? ping.message
-        : "API ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല");
+    if (!ping || ping.success !== true) {
+      throw new Error(
+        ping && ping.message
+          ? ping.message
+          : "API ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല."
+      );
     }
 
-    status.textContent = "API ബന്ധിപ്പിച്ചു";
-    dot.style.background = "#28c76f";
+    setApiStatus("API ബന്ധിപ്പിച്ചു", "#28c76f");
 
-    try{
-      const teamData = await apiRequest("teams");
-      const teams = extractRows(teamData);
-      cache.teams = teams;
+    const teamResult = await apiRequest("teams");
+    const teams = extractRows(teamResult);
 
-      if(teams.length){
-        document.getElementById("teamCount").textContent =
-          teams.length;
-      }
-    }catch(error){
-      console.warn("ടീം വിവരങ്ങൾ:",error.message);
+    cache.teams = teams;
+
+    if (teams.length > 0) {
+      document.getElementById("teamCount").textContent =
+        teams.length;
     }
 
-    try{
-      const playerData = await apiRequest("players");
-      const players = extractRows(playerData);
-      cache.players = players;
+    const playerResult = await apiRequest("players");
+    const players = extractRows(playerResult);
 
-      document.getElementById("playerCount").textContent =
-        players.length;
-    }catch(error){
-      console.warn("കളിക്കാരുടെ വിവരങ്ങൾ:",error.message);
-    }
+    cache.players = players;
+
+    document.getElementById("playerCount").textContent =
+      players.length;
 
     document.getElementById("panelTitle").textContent =
       "കണക്ഷൻ വിജയിച്ചു";
 
     document.getElementById("panelMessage").textContent =
-      "KMPL Season 05 API പ്രവർത്തിക്കുന്നു. ആവശ്യമായ വിഭാഗം തിരഞ്ഞെടുത്ത് വിവരങ്ങൾ കാണുക.";
+      "KMPL Season 05 API പ്രവർത്തിക്കുന്നു.\n" +
+      "ടീമുകൾ: " + teams.length + "\n" +
+      "കളിക്കാർ: " + players.length + "\n" +
+      "ആവശ്യമായ വിഭാഗം തിരഞ്ഞെടുത്ത് വിവരങ്ങൾ കാണാം.";
 
-    if(currentSection){
-      await showSection(currentSection);
+    if (currentSection) {
+      await showSection(currentSection, false);
     }
-  }catch(error){
-    status.textContent = "കണക്ഷൻ പിശക്";
-    dot.style.background = "#ff4d4d";
+
+  } catch (error) {
+    setApiStatus("കണക്ഷൻ പിശക്", "#ff4d4d");
 
     document.getElementById("panelTitle").textContent =
       "API കണക്ഷൻ പിശക്";
 
     document.getElementById("panelMessage").textContent =
-      error.message + ". Apps Script Web App URL, deployment access എന്നിവ പരിശോധിക്കുക.";
+      error.message ||
+      "API-യുമായി ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല.";
 
     document.getElementById("dataList").replaceChildren();
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "വിവരങ്ങൾ പുതുക്കുക";
   }
 }
 
-async function showSection(section){
+
+/* =========================================
+   SHOW SELECTED SECTION
+   ========================================= */
+
+async function showSection(section, scrollToPanel = true) {
   const config = sectionConfig[section];
-  if(!config) return;
+
+  if (!config) return;
 
   currentSection = section;
+
+  const thisRequest = ++requestNumber;
 
   document.getElementById("panelTitle").textContent =
     config.title;
@@ -467,45 +767,57 @@ async function showSection(section){
 
   document.getElementById("dataList").replaceChildren();
 
-  try{
-    let data;
+  try {
+    let rows;
 
-    if(cache[section] !== undefined){
-      data = cache[section];
-    }else{
+    if (Object.prototype.hasOwnProperty.call(cache, section)) {
+      rows = cache[section];
+    } else {
       const response = await apiRequest(config.action);
-      data = extractRows(response);
-      cache[section] = data;
+      rows = extractRows(response);
+      cache[section] = rows;
     }
 
-    if(section === "live" &&
-       data &&
-       !Array.isArray(data) &&
-       typeof data === "object"){
-      document.getElementById("panelMessage").textContent =
-        JSON.stringify(data,null,2);
+    if (thisRequest !== requestNumber) {
       return;
     }
 
-    if(renderRows(data)){
+    if (renderRows(rows)) {
       document.getElementById("panelMessage").textContent =
-        "ലഭിച്ച വിവരങ്ങൾ: " + data.length;
-    }else{
+        "ലഭിച്ച വിവരങ്ങൾ: " + rows.length;
+    } else {
       document.getElementById("panelMessage").textContent =
         config.empty;
     }
-  }catch(error){
+
+  } catch (error) {
+    if (thisRequest !== requestNumber) {
+      return;
+    }
+
     document.getElementById("panelMessage").textContent =
-      "വിവരങ്ങൾ ലഭ്യമാക്കാൻ കഴിഞ്ഞില്ല: " + error.message;
+      "വിവരങ്ങൾ ലഭ്യമാക്കാൻ കഴിഞ്ഞില്ല: " +
+      (error.message || "അജ്ഞാത പിശക്.");
+
   }
 
-  document.getElementById("contentPanel").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+  if (scrollToPanel) {
+    document.getElementById("contentPanel").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
 }
 
-refreshData();
+
+/* =========================================
+   INITIAL LOAD
+   ========================================= */
+
+document.addEventListener("DOMContentLoaded", function() {
+  refreshData();
+});
 </script>
+
 </body>
 </html>
